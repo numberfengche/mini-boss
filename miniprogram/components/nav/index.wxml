@@ -1,0 +1,13 @@
+<view class="mark">
+    <view class="nav" style="height:{{navBarHeight}}px; padding-top: {{top}}px;">
+                <!-- <image src="/assets/images/home.png" class="home_icon" bind:tap="back" /> -->
+                <view  class="home_icon" >
+                   
+                    <van-icon class="aa" wx:if="{{show}}" name="add-o" />
+                </view>
+                <view class="nav_title">
+                {{name}}
+            </view>
+            <view class="null"></view>
+            </view>
+</view>

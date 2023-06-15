@@ -1,0 +1,58 @@
+.card {
+    width: 518rpx !important;
+    height: 180rpx;
+    box-sizing: border-box;
+    margin-top: 32rpx;
+    margin-left: 24rpx;
+    background: #FFFFFF;
+    border-radius: 8rpx 8rpx 8rpx 8rpx;
+    display: flex;
+
+    .card_img {
+        width: 180rpx;
+        height: 180rpx;
+    }
+
+    .product_info {
+        // width: 290rpx;
+        padding: 28rpx 0 24rpx 24rpx;
+        .product_name {
+            width: 100%;
+            overflow: hidden;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            font-size: 24rpx;
+            margin-bottom: 24rpx;
+            font-family: MetroMedium LT Two-Regular, MetroMedium LT Two;
+            font-weight: 400;
+            color: #1A1A1A;
+        }
+.price_row{
+    display: flex;
+    align-items: center;
+    .add{
+        font-size: 28rpx;
+font-family: DIN-Bold, DIN;
+margin: 0 4rpx;
+font-weight: bold;
+color: #BD3B39;
+    }
+}
+        .price {
+            font-size: 28rpx;
+            font-family: DIN-Bold, DIN;
+            font-weight: bold;
+            color: #BD3B39;
+            text {
+                font-size: 20rpx;
+                font-family: PingFang SC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #BD3B39;
+                line-height: 23rpx;
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<view class="bioix">
+    <view class="card" bind:tap="login" wx:for="{{shops.shop_list}}" wx:key="index" data-id="{{item.shop_id}}">
+        <van-icon class="icon" name="cashier-o" /> <text>{{item.shop_name}}</text>
+    </view>
+    
+</view>

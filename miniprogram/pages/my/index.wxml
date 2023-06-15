@@ -1,0 +1,7 @@
+
+<van-cell title="桌台管理" bind:tap="go" is-link />
+
+<view class="mark">
+
+    <button   class="f_button" disabled="{{loading}}" type="primary" color="#EF4034" block bind:tap="outline"  >退出登录</button>
+</view>

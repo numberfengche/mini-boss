@@ -1,0 +1,47 @@
+<view class="receptacle">
+    <view class="mark">
+        <view class="nav" style="height:{{navBarHeight}}px; padding-top: {{top}}px;">
+            <view class="home_icon" bind:tap="creattable">
+                <van-icon class="aa" name="add-o" />
+            </view>
+            <view class="nav_title">
+                桌台管理
+            </view>
+            <view class="null"></view>
+        </view>
+    </view>
+    <view class="placeholder"></view>
+    <van-cell-group>
+        <van-cell bind:tap="openaction" wx:for="{{list}}" wx:key="index" center title="{{item.desk_name}}" value="{{item.state===0?'已禁用':''}}" data-desk="{{item.desk_id}}" data-id="{{item.state}}" is-link label="{{item.qrcode_id}}" />
+    </van-cell-group>
+    <van-action-sheet show="{{ show }}" actions="{{type===1? actions:actions1 }}" bind:click-overlay="close" bind:select="onSelect" />
+
+</view>
+
+<!-- 修改名称 -->
+<van-dialog title="修改名称" bind:confirm="paymentcheck" showCancelButton show="{{ showname }}" use-slot custom-class="my-custom-class">
+    <van-cell-group>
+        <view class="null"></view>
+        <van-field model:value="{{ name }}" placeholder="请输入名称" label="名称" border="{{ false }}" />
+        <view class="null"></view>
+    </van-cell-group>
+</van-dialog>
+
+<!-- 换绑二维码-->
+
+<van-dialog title="换绑二维码" bind:confirm="changeid" showCancelButton show="{{ showewm }}" use-slot custom-class="my-custom-class">
+    <van-cell-group>
+        <view class="null"></view>
+        <van-field model:value="{{ id }}" placeholder="请输入数字ID" label="数字ID" border="{{ false }}" />
+        <view class="null"></view>
+    </van-cell-group>
+</van-dialog>
+
+<!-- 添加桌台 -->
+<van-dialog title="添加桌台" bind:confirm="checktable" showCancelButton show="{{ showtable }}" use-slot custom-class="my-custom-class">
+    <van-cell-group>
+        <view class="null"></view>
+        <van-field model:value="{{ tablename }}" placeholder="请输入名称" label="名称" border="{{ false }}" />
+        <view class="null"></view>
+    </van-cell-group>
+</van-dialog>

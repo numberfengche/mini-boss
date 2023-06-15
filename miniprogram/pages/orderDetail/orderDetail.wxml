@@ -1,0 +1,116 @@
+<view class="receptacle">
+    <nav name="{{shop}}"></nav>
+    <view class="placeholder"></view>
+    <view class="dine">
+        <view class="top">就餐信息</view>
+        <view class="stause">
+            <view class="label">订单编号</view>
+            <view class="value">{{trade.trade_id}}</view>
+        </view>
+        <view class="stause">
+            <view class="label">开台时间</view>
+            <view class="value">{{trade.create_time}}</view>
+        </view>
+        <view class="stause">
+            <view class="label">就餐人数</view>
+            <view class="value">{{trade.diners}}</view>
+        </view>
+        <view class="stause_pay" wx:if="{{trade.state!==2}}">
+            <view class="label">订单状态</view>
+            <view class="value">{{trade.state_str}}</view>
+        </view>
+        <view class="stause_pay" wx:if="{{trade.state===2}}">
+            <view class="label">订单状态</view>
+            <view class="value1">{{trade.state_str}}元</view>
+        </view>
+        <view class="stause" wx:if="{{trade.pay_time}}">
+            <view class="label">结账时间</view>
+            <view class="value">{{trade.pay_time}}</view>
+        </view>
+    </view>
+    <view class="box" wx:for="{{list}}" wx:key="index">
+        <view class="table">
+            <view class="left">
+                <view>
+                    <text wx:if="{{item.batch!=0}}"> 第{{item.batch}}次下单</text>
+                    <text wx:if="{{item.batch===0}}"> 其他费用</text>
+                </view>
+                <view class="time">{{item.create_time_long}}</view>
+            </view>
+
+            <view class="right" wx:if="{{item.state===1}}">
+                已接单
+            </view>
+            <view class="right" wx:if="{{item.state===-1}}">
+                已关闭：{{item.close_reason}}
+            </view>
+            <view class="right" wx:if="{{item.state===0}}">
+                <view class="action">
+                    <view class="refyse" bind:tap="refyse" data-id="{{item.batch_id}}">拒绝</view>
+                    <view class="check_menu" bind:tap="onok" data-id="{{item.batch_id}}">确认</view>
+                </view>
+
+            </view>
+        </view>
+        <view class="card_box">
+            <view class="card" wx:for="{{item.item_list}}" wx:for-item="food" wx:key="index" bind:tap="changefoods" data-item="{{food}}">
+                <image src="{{food.cover_url}}" class="img1" mode="" />
+                <view class="center">
+                    <view class="title">{{food.title}}</view>
+                    <view class="num">x{{food.num}}份</view>
+                </view>
+                <view class="right">￥{{food.price_total_str}}</view>
+            </view>
+        </view>
+
+    </view>
+    <view class="placeholder1">
+    </view>
+</view>
+
+<view class="options">
+    <view class="mark">
+        <view class="op_l">
+            <view class="price_row">合计<text>{{price}}</text>元</view>
+        </view>
+        <view class="op_r">
+            <view class="cancel" wx:if="{{trade.state===1||trade.state===0}}" bind:tap="cancellation">作废</view>
+            <view class="cancel" bind:tap="print">打印</view>
+            <view class="cancel" wx:if="{{trade.state===1||trade.state===0}}" bind:tap="payment">结账</view>
+        </view>
+
+    </view>
+</view>
+
+
+<van-dialog title="{{detail.title}}" show="{{ show }}" use-slot custom-class="my-custom-class" show-confirm-button="{{false}}">
+
+    <van-cell-group>
+        <view class="null"></view>
+        <van-field model:value="{{ value }}" placeholder="请输入数量" label="数量" type="number" bind:change="onChange" border="{{ false }}" />
+        <view class="null"></view>
+        <van-field model:value="{{ foodsprice }}" placeholder="请输入单价" label="单价" type="digit" bind:change="onChangeprice" border="{{ false }}" />
+
+        <view class="totalprice">
+            总价 {{total}} 元
+        </view>
+
+        <view class="option_row">
+            <view class="cancel" wx:if="{{detail.state===0}}">退菜</view>
+            <view class="rignt_row">
+                <view class="cancel" bind:tap="cancle">取消</view>
+                <view class="cancel1" bind:tap="change">修改</view>
+            </view>
+        </view>
+    </van-cell-group>
+</van-dialog>
+
+
+<van-dialog title="实付款" bind:confirm="paymentcheck" showCancelButton show="{{ showtotalMoney }}" use-slot custom-class="my-custom-class">
+
+    <van-cell-group>
+        <view class="null"></view>
+        <van-field model:value="{{ money }}" placeholder="请输入实付款" label="实付款" type="number" border="{{ false }}" />
+        <view class="null"></view>
+    </van-cell-group>
+</van-dialog>

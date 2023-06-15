@@ -1,0 +1,46 @@
+{
+    "pages": [
+        "pages/order/order",
+        "pages/index/index",
+        "pages/mine/mine",
+        "pages/orderDetail/orderDetail",
+        "pages/login/index",
+        "pages/shop/index",
+        "pages/my/index"
+    ],
+    "tabBar": {
+        "backgroundColor": "#fff",
+        "color": "#BBBBBB",
+        "selectedColor": "#1A1A1A",
+        "list": [
+            {
+                "pagePath": "pages/order/order",
+                "text": "桌台",
+                "iconPath": "assets/images/index.png",
+                "selectedIconPath": "assets/images/index_select.png"
+            },
+            {
+                "pagePath": "pages/index/index",
+                "text": "订单",
+                "iconPath": "assets/images/index.png",
+                "selectedIconPath": "assets/images/index_select.png"
+            },
+            {
+                "pagePath": "pages/my/index",
+                "text": "我的",
+                "iconPath": "assets/images/mine1.png",
+                "selectedIconPath": "assets/images/mine1_select.png"
+            }
+        ]
+    },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "牦牛管家",
+        "navigationBarTextStyle": "black"
+    },
+    "usingComponents": {
+        "van-action-sheet": "@vant/weapp/action-sheet/index"
+    },
+    "sitemapLocation": "sitemap.json"
+}

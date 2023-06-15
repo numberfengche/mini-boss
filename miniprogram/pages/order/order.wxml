@@ -1,0 +1,5 @@
+<view class="receptacle">
+    <nav name="{{shop}}"></nav>
+    <view class="placeholder"></view>
+    <List classify="{{classify}}" />
+</view>

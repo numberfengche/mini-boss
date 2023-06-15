@@ -1,0 +1,113 @@
+<scroll-view class="scroll" scroll-y refresher-enabled   bindrefresherrefresh="onRefresh"refresher-threshold="{{80}} "refresher-triggered="{{refresh}}">
+
+    <van-tabs id="tabs" animated   bind:change="changeTab" ellipsis="{{false}}" active="{{active}}" title-active-color="#9B7B4E" title-inactive-color="#666666" color="#9B7B4E" line-width="{{28}}" line-height="{{2}}">
+                <!-- active="{{ searchInformation.cid_type }}" -->
+                <van-tab style="padding-left: 0 !important" title="全部" name="0">
+                    <view class="table_box">
+                        <block wx:for="{{list}}" wx:key="index">
+                            <view class="waiting_card" wx:if="{{item.state===1}}">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="info">未开台</view>
+                            </view>
+                            <view class="order_card" wx:if="{{item.state===2}}" bind:tap="godetail" data-id="{{item.trade_id}}">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="num_row">
+                                    <view class="num">{{item.diners}}人</view>
+                                    <view class="time">{{item.duration_str}}</view>
+                                </view>
+                                <view class="state">
+                                    未点单
+                                </view>
+                            </view>
+                            <view class="payment_card" wx:if="{{item.state===3}}" data-id="{{item.trade_id}}" bind:tap="godetail">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="num_row">
+                                    <view class="num">{{item.diners}}人</view>
+                                    <view class="time">{{item.duration_str}}</view>
+                                </view>
+                                <view class="state">
+                                    ￥{{item.price_total_str}}
+                                </view>
+                            </view>
+                            <view class="check_card" wx:if="{{item.state===4}}" data-id="{{item.trade_id}}" bind:tap="godetail">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="num_row">
+                                    <view class="num">{{item.diners}}人</view>
+                                    <view class="time">{{item.duration_str}}</view>
+                                </view>
+                                <view class="state">
+                                    待确认
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </van-tab>
+                <van-tab style="padding-left: 0 !important" title="空座" name="1">
+                    <view class="table_box">
+                        <block wx:for="{{nonelist}}" wx:if="{{nonelist.length>0}}" wx:key="index">
+                            <view class="waiting_card" >
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="info">未开台</view>
+                            </view>
+                        </block>
+                      <view class="mark" wx:if="{{nonelist.length===0}}">
+                        <van-empty  description="暂无数据" />
+                      </view>
+                    </view>
+
+                </van-tab>
+                <van-tab style="padding-left: 0 !important" title="待下单" name="2">
+                    <view class="table_box">
+                        <view class="order_card" wx:for="{{orderlist}}"  wx:if="{{orderlist.length>0}}"  wx:key="index" data-id="{{item.trade_id}}" bind:tap="godetail">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="num_row">
+                                    <view class="num">{{item.diners}}人</view>
+                                    <view class="time">{{item.duration_str}}</view>
+                                </view>
+                                <view class="state">
+                                    未点单
+                                </view>
+                            </view>
+                            <view class="mark" wx:if="{{orderlist.length===0}}">
+                        <van-empty  description="暂无数据" />
+                      </view>
+                    </view>
+                </van-tab>
+                <van-tab style="padding-left: 0 !important" title="待结账" name="3">
+                    <view class="table_box">
+                        <view class="payment_card"  wx:if="{{paymentList.length>0}}"  wx:for="{{paymentList}}"   wx:key="index" data-id="{{item.trade_id}}" bind:tap="godetail">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="num_row">
+                                    <view class="num">{{item.diners}}人</view>
+                                    <view class="time">{{item.duration_str}}</view>
+                                </view>
+                                <view class="state">
+                                    ￥{{item.price_total_str}}
+                                </view>
+                            </view>
+                            <view class="mark" wx:if="{{paymentList.length===0}}" >
+                        <van-empty  description="暂无数据" />
+                      </view>
+
+                    </view>
+                </van-tab>
+                <van-tab style="padding-left: 0 !important" title="待确认" name="4" >
+                    <view class="table_box">
+                        <view class="check_card" wx:if="{{checklist.length>0}}" wx:for="{{checklist}}" wx:key="index" data-id="{{item.trade_id}}" bind:tap="godetail">
+                                <view class="table">{{item.desk_name}}</view>
+                                <view class="num_row">
+                                    <view class="num">{{item.diners}}人</view>
+                                    <view class="time">{{item.duration_str}}</view>
+                                </view>
+                                <view class="state">
+                                    待确认
+                                </view>
+                            </view>
+   
+                            <view class="mark" wx:if="{{checklist.length===0}}" >
+                        <van-empty  description="暂无数据" />
+                      </view>
+                    </view>
+                </van-tab>
+            </van-tabs>
+</scroll-view>

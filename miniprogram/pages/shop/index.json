@@ -1,0 +1,4 @@
+{
+    "usingComponents": {  "van-icon": "@vant/weapp/icon/index"},
+    "navigationBarTitleText": "选择店铺"
+}

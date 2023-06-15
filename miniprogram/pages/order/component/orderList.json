@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+        "van-tab": "@vant/weapp/tab/index",
+        "van-tabs": "@vant/weapp/tabs/index",
+        "van-empty": "@vant/weapp/empty/index",
+        "obligation":"/components/obligation/obligation"
+    }
+}

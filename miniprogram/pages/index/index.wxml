@@ -1,0 +1,41 @@
+<view class="box_con">
+    <view class="mark">
+        <van-tabs id="tabs" bind:change="changeTab" ellipsis="{{false}}" active="{{active}}" title-active-color="#9B7B4E" title-inactive-color="#666666" color="#9B7B4E" line-width="{{28}}" line-height="{{2}}">
+            <van-tab style="padding-left: 0 !important" title="全部" name="0" />
+            <van-tab style="padding-left: 0 !important" title="进行中" name="1" />
+            <van-tab style="padding-left: 0 !important" title="已支付" name="2" />
+            <van-tab style="padding-left: 0 !important" title="已关闭" name="-1" />
+        </van-tabs>
+    </view>
+    <view class="con">
+        <view wx:if="{{list.length>0}}" class="dine" wx:for="{{list}}" wx:key="index">
+            <view class="top">{{item.create_time}} <text>{{item.desk_name}}</text></view>
+            <view class="stause">
+                <view class="label">订单编号</view>
+                <view class="value">{{item.trade_id}}</view>
+            </view>
+            <!-- <view class="stause">
+        <view class="label">流水号</view>
+        <view class="value">27483798432468231</view>
+    </view> -->
+            <view class="stause">
+                <view class="label">持续时间</view>
+                <view class="value">{{item.duration_str}}</view>
+            </view>
+            <!-- <view class="stause">
+        <view class="label">桌号</view>
+        <view class="value">27483798432468231</view>
+    </view> -->
+            <view class="stause_pay" wx:if="{{item.state!==2}}">
+                <view class="label">订单状态</view>
+                <view class="value">{{item.state_str}}</view>
+            </view>
+            <view class="stause_pay" wx:if="{{item.state===2}}">
+                <view class="label">订单状态</view>
+                <view class="value1">{{item.state_str}}元</view>
+            </view>
+        </view>
+        <van-empty wx:if="{{list.length===0}}" description="暂无数据" />
+
+    </view>
+</view>
